@@ -7,13 +7,21 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import com.hackinlumberjack.rabbit.senders.Sender;
 
 @SpringBootApplication
+@EnableScheduling
 public class RabbitmqExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RabbitmqExampleApplication.class, args);
 	}
+
+  @Bean
+  public Sender rabbitmqSender() {
+    return new Sender();
+  }
 
   @Bean
   public Queue queue() {
@@ -27,6 +35,6 @@ public class RabbitmqExampleApplication {
 
   @Bean
   public Binding binding(DirectExchange exchange, Queue queue) {
-    return BindingBuilder.bind(queue).to(exchange).with("simple.excahnge");
+    return BindingBuilder.bind(queue).to(exchange).with("simple");
   }
 }
