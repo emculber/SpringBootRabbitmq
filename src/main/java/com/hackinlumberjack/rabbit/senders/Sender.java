@@ -14,6 +14,6 @@ public class Sender {
 
   @Scheduled(fixedDelay = 1000, initialDelay = 500)
   public void send() {
-    this.rabbitTemplate.convertAndSend(exchange.getName(), "simple", "Hello World");
+    //this.rabbitTemplate.convertAndSend(exchange.getName(), "simple", "Hello World");
   }
 }
