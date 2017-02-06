@@ -1,17 +1,20 @@
-package com.hackinlumberjack.rabbit.senders;
+package com.hackinlumberjack.rabbit.receiver;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.integration.annotation.Payload;
+
+import org.springframework.messaging.handler.annotation.Payload;
+
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@RabbitListener(queues = "tut.hello")
+@Component
+@RabbitListener(queues = "simple.queue")
 public class Receiver {
 
   @RabbitHandler
   public void receive(@Payload String payload) {
-    Date currentDateTime = new Date();
-    System.out.println(currentDateTime + ": [x] Received " + payload);
+    System.out.println(" [" + new Date() + "] Received " + payload);
   }
 }
