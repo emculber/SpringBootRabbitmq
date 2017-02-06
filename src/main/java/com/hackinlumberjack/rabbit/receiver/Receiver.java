@@ -15,6 +15,6 @@ public class Receiver {
 
   @RabbitHandler
   public void receive(@Payload String payload) {
-    System.out.println(" [" + new Date() + "] Received " + payload);
+    System.out.println(" [x] [" + new Date() + "] Received " + payload);
   }
 }
